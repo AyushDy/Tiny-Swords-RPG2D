@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: First Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::DialougeSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Hello there! You look new here, never seen you around.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Hello. Yes its my first time visiting this place
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Oh, I see I see. So what brings you here? It's definetely rare to see one
+      of you warriors visiting our tribe.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Yes i came here because of this recent quest i received.
