@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: Find_red_completed
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 433a23e76bf4b7345920d6e6f2f55877, type: 2}
+    text: Hi im purple, i see that you've found my brother red, nice work!
+  options: []
+  requiredNPCs:
+  - {fileID: 11400000, guid: 9458f67f04adad1429d3d0bf16c5dfbd, type: 2}
+  requiredLocations: []
+  requiredItems: []
+  RemoveAfterPlay: 1
+  removeTheseOnPlay:
+  - {fileID: 11400000, guid: d5e29e31b615ae540a4ab4fc793b7fc9, type: 2}
+  - {fileID: 11400000, guid: 9219aee31eae8bf49b290c112198e03b, type: 2}

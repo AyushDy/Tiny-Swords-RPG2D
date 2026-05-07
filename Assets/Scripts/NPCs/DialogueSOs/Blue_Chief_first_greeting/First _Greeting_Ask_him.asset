@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: First _Greeting_Ask_him
+  m_EditorClassIdentifier: Assembly-CSharp::DialougeSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Actually, I need to find this Big Mushroom that's can apparently only be
+      found in the dark forest.
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Big Mushroom huh?.. I think I know where to find it. It can be found in
+      the dark forest.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Oh so you know where I can find it?
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: 'Yes, you''re lucky warrior, only recently i heard my tribes hunters mention
+      a giant mushroom in the forest west of the village. '
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Thanks a lot chief, this makes it really easy for me. Is there anything
+      i can do to repay you for this?
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Yes actually there is something, but it involves dealing with some dangerous
+      goblns. Are you sure you want to help with it?
+  options:
+  - optionText: Accept
+    nextDialogue: {fileID: 11400000, guid: f33798c6fcbf1634e9136d9dd0d20f28, type: 2}
+  - optionText: Refuse
+    nextDialogue: {fileID: 11400000, guid: 2302e80b8025ffe41b53632b3a643907, type: 2}

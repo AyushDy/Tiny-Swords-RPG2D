@@ -58,7 +58,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pawn_Idle_0
+  m_Name: Pawn_Idle_purple
   serializedVersion: 6
   m_AnimatorParameters:
   - m_Name: isMoving

@@ -13,6 +13,7 @@ public class NPC_wander : MonoBehaviour
     public Vector2 target;
 
 
+    private NPC npcScript;
     private Rigidbody2D rb;
     private Animator anim;
     private bool isMoving;
@@ -22,6 +23,7 @@ public class NPC_wander : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        npcScript = GetComponent<NPC>();
     }
 
     void OnEnable()
@@ -29,9 +31,17 @@ public class NPC_wander : MonoBehaviour
         StartCoroutine(PauseAndPickNewDestination());
     }
 
+    void OnDisable()
+    {
+        StopAllCoroutines();
+        rb.linearVelocity = Vector2.zero;
+        isMoving = false;
+        anim.SetBool("isMoving", false);
+    }
+
     private void Update()
     {
-        if(!isMoving)
+        if (!isMoving)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -45,6 +55,7 @@ public class NPC_wander : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(npcScript.currentState == NPC.NPCState.Wander)
         StartCoroutine(PauseAndPickNewDestination());
     }
 
@@ -78,7 +89,7 @@ public class NPC_wander : MonoBehaviour
     private void Move()
     {
         Vector2 dir = (target - (Vector2)transform.position).normalized;
-        if(dir.x < 0 && transform.localScale.x > 0 || dir.x > 0 && transform.localScale.x < 0)
+        if (dir.x < 0 && transform.localScale.x > 0 || dir.x > 0 && transform.localScale.x < 0)
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
         rb.linearVelocity = dir * speed;
     }

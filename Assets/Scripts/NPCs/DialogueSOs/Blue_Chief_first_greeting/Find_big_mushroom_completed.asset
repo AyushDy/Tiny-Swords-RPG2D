@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: Find_big_mushroom_completed
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: I see that you have found a big mushroom. Thank you but i already had a
+      meal. You can keep that mushroom.
+  options: []
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems:
+  - {fileID: 11400000, guid: cc5d3f0fb94db1a44b84634a021b0fc1, type: 2}
+  RemoveAfterPlay: 1
+  removeTheseOnPlay:
+  - {fileID: 11400000, guid: 6dbf394004e8ec84a83f3833b038ceff, type: 2}

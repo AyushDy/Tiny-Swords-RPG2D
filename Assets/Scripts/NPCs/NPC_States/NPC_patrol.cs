@@ -17,11 +17,25 @@ public class NPC_patrol : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-        StartCoroutine(SetPatrolPoint());
+
+    }
+
+    void OnEnable()
+    {
+        if (patrolPoints.Length > 0)
+            StartCoroutine(SetPatrolPoint());
+    }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
+        rb.linearVelocity = Vector2.zero;
+        isMoving = false;
+        anim.SetBool("isMoving", false);
     }
 
     // Update is called once per frame
@@ -34,7 +48,7 @@ public class NPC_patrol : MonoBehaviour
         }
 
         Vector2 direction = target - (Vector2)transform.position;
-        if( direction.x < 0 && transform.localScale.x > 0 || direction.x > 0 && transform.localScale.x < 0)
+        if (direction.x < 0 && transform.localScale.x > 0 || direction.x > 0 && transform.localScale.x < 0)
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
         rb.linearVelocity = direction.normalized * speed;
         if (isMoving && Vector2.Distance(transform.position, target) < 0.1f)
@@ -46,6 +60,7 @@ public class NPC_patrol : MonoBehaviour
         isMoving = false;
         anim.SetBool("isMoving", isMoving);
         yield return new WaitForSeconds(pauseDuration);
+        Debug.Log("Setting new patrol point" + target);
         currentPatrolIndex++;
         target = patrolPoints[currentPatrolIndex % patrolPoints.Length];
         isMoving = true;

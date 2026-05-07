@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: Visited_campfire
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: I see you've visited the campfire. My son Red Pawn spends most of the time
+      by the campfire.
+  options: []
+  requiredNPCs: []
+  requiredLocations:
+  - {fileID: 11400000, guid: 81508e7dedb9b4946ad7109173b02c31, type: 2}
+  requiredItems: []
+  RemoveAfterPlay: 1
+  removeTheseOnPlay: []

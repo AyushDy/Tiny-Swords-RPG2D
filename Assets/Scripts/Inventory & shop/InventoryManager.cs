@@ -3,12 +3,27 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance;
     public InventorySlot[] inventorySlots;
     public int gold;
     public TMP_Text goldText;
     public GameObject lootPrefab;
     public Transform player;
 
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void OnEnable()
     {
         Loot.OnLootPickup += AddToInventory;
@@ -17,6 +32,11 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         Loot.OnLootPickup -= AddToInventory;
+    }
+
+    void Start()
+    {
+        goldText.text = gold.ToString();
     }
 
     public void AddToInventory(ItemSO itemSO, int quantity)
@@ -93,5 +113,20 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log($"Used {slot.itemSO.itemName}");
         }
+    }
+
+    public bool HasItem(ItemSO itemSO, int quantity = 1)
+    {
+        int totalQuantity = 0;
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.itemSO == itemSO)
+            {
+                totalQuantity += slot.quantity;
+                if (totalQuantity >= quantity)
+                    return true;
+            }
+        }
+        return false;
     }
 }

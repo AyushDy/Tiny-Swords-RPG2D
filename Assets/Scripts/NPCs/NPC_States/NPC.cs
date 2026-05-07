@@ -3,7 +3,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public enum NPCState {Default, Idle, Patrol, Talk, Wander}
-    public NPCState currentState = NPCState.Patrol;
+    public NPCState currentState;
     private NPCState defaultState;
 
 
@@ -27,7 +27,7 @@ public class NPC : MonoBehaviour
         wanderScript.enabled = currentState == NPCState.Wander;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
@@ -35,7 +35,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

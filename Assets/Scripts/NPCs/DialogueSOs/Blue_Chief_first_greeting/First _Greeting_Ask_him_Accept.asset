@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: First _Greeting_Ask_him_Accept
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Yes i think i can handle dealing with some goblins.
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Thats good then. Seeing you confident reassures me.
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: There has been sightings of some recent goblins in the outskirts of the
+      forest to west of here.
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: I would like you to exterminate 5 of these goblins to intimidate them in
+      order to prevent them from roaming in the outskirts of the forest.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: I can handle that, I'll exterminate any goblins that i come across.
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Take care warrior, may the blessings of the forest be with you.
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Take care warrior, may the blessings of the forest be with you.
+  options: []
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems: []
+  RemoveAfterPlay: 1
+  removeTheseOnPlay:
+  - {fileID: 11400000, guid: 364e6b8ac9c5da740a811a06ec75117e, type: 2}
