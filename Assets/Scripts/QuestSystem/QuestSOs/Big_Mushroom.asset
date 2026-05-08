@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323d1fd6f4d5a624c8fe4db0f22eddad, type: 3}
+  m_Name: Big_Mushroom
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questName: Bigger Mushroom
+  questDescription: 'Find a big mushroom and cook it near the campfire.
+
+'
+  objectives:
+  - description: Find a big mushroom
+    target: {fileID: 11400000, guid: cc5d3f0fb94db1a44b84634a021b0fc1, type: 2}
+    requiredAmount: 1
+    currentAmount: 0
+    isComplete: 0
+  - description: Cook it near the campfire
+    target: {fileID: 11400000, guid: 81508e7dedb9b4946ad7109173b02c31, type: 2}
+    requiredAmount: 1
+    currentAmount: 0
+    isComplete: 0
+  - description: Bring it to Blue Pawn Chief
+    target: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    requiredAmount: 1
+    currentAmount: 0
+    isComplete: 0
+  rewards:
+  - itemSO: {fileID: 11400000, guid: 24b07f498d089524f801571a4cadc294, type: 2}
+    quantity: 10
+  - itemSO: {fileID: 11400000, guid: 58812fcddb67c81498ae445808aba828, type: 2}
+    quantity: 100
+  - itemSO: {fileID: 11400000, guid: eb01d71a6932aea4b9857ca4e80c7b85, type: 2}
+    quantity: 5

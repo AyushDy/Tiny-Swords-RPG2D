@@ -36,16 +36,16 @@ public class NPC_talk : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if (DialogueManager.Instance.isDialogueActive)
+            if (GameManager.instance.dialogueManager.isDialogueActive)
             {
-                DialogueManager.Instance.AdvanceDialogue();
+                GameManager.instance.dialogueManager.AdvanceDialogue();
             }
             else
             {
-                if (DialogueManager.Instance.canStartDialogue())
+                if (GameManager.instance.dialogueManager.canStartDialogue())
                 {
                     CheckForNewConversation();
-                    DialogueManager.Instance.StartDialogue(currentConversation);
+                    GameManager.instance.dialogueManager.StartDialogue(currentConversation);
                 }
             }
         }

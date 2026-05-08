@@ -9,6 +9,7 @@ public class ItemSO : ScriptableObject
     public Sprite icon;
 
     public bool isGold;
+    public bool isExp;
     public int stackSize = 3;
 
     [Header("Stats")]

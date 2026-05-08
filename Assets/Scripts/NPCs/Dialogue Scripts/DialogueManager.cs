@@ -5,7 +5,6 @@ using System;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance;
     public static event Action<DialogueSO> OnDialogueOptionSelected;
     [Header("UI References")]
     public Image portrait;
@@ -26,15 +25,6 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
@@ -80,7 +70,7 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueLine line = currentDialogue.lines[dialogueIndex];
 
-        DialogueHistoryTracker.Instance.RecordNPC(line.speaker);
+        GameManager.instance.dialogueHistoryTracker.RecordNPC(line.speaker);
 
         portrait.sprite = line.speaker.portrait;
         actorName.text = line.speaker.actorName;

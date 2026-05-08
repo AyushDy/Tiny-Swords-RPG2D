@@ -23,7 +23,7 @@ public class DialogueSO : ScriptableObject
         {
             foreach(var npc in requiredNPCs)
             {
-                if(!DialogueHistoryTracker.Instance.HasSpokenWithNPC(npc))
+                if(!GameManager.instance.dialogueHistoryTracker.HasSpokenWithNPC(npc))
                     return false;
             }
         }
@@ -31,7 +31,7 @@ public class DialogueSO : ScriptableObject
         {
             foreach(var location in requiredLocations)
             {
-                if(!LocationHistoryTracker.Instance.HasVisitedLocation(location))
+                if(!GameManager.instance.locationHistoryTracker.HasVisitedLocation(location))
                     return false;
             }
         }
