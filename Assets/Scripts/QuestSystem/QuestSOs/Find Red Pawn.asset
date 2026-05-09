@@ -12,29 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323d1fd6f4d5a624c8fe4db0f22eddad, type: 3}
   m_Name: Find Red Pawn
   m_EditorClassIdentifier: Assembly-CSharp::QuestSO
-  questName: Bigger Mushroom
-  questDescription: 'Find a big mushroom and cook it near the campfire.
-
-'
+  questName: Red Pawn
+  questDescription: Find Red Pawn near the Campfire.
   objectives:
-  - description: Find a big mushroom
-    target: {fileID: 11400000, guid: cc5d3f0fb94db1a44b84634a021b0fc1, type: 2}
-    requiredAmount: 1
-    currentAmount: 0
-    isComplete: 0
-  - description: Cook it near the campfire
+  - description: Fine Red Pawn
     target: {fileID: 11400000, guid: 81508e7dedb9b4946ad7109173b02c31, type: 2}
     requiredAmount: 1
     currentAmount: 0
     isComplete: 0
-  - description: Bring it to Blue Pawn Chief
-    target: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
-    requiredAmount: 1
-    currentAmount: 0
-    isComplete: 0
   rewards:
-  - itemSO: {fileID: 11400000, guid: 24b07f498d089524f801571a4cadc294, type: 2}
-    quantity: 10
   - itemSO: {fileID: 11400000, guid: 58812fcddb67c81498ae445808aba828, type: 2}
     quantity: 100
   - itemSO: {fileID: 11400000, guid: eb01d71a6932aea4b9857ca4e80c7b85, type: 2}

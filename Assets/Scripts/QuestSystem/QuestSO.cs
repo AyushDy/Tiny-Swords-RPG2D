@@ -26,7 +26,6 @@ public class QuestObjective
 
     public int requiredAmount;
     public int currentAmount;
-    public bool isComplete;
 }
 
 [Serializable]
@@ -34,4 +33,5 @@ public class QuestReward
 {
     public ItemSO itemSO;
     public int quantity;
+    public QuestSO offerQuest;
 }

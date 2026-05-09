@@ -11,6 +11,7 @@ public class ExpManager : MonoBehaviour
     public float expMultiplier = 1.5f;
     public Slider expSlider;
 
+
     public static event Action<int> OnLevelUp;
 
     public void Start()
@@ -21,11 +22,13 @@ public class ExpManager : MonoBehaviour
     public void OnEnable()
     {
         Enemy_health.OnMonsterDefeated += GainExperience;
+        InventoryManager.OnExperienceGained += GainExperience;
     }
 
     public void OnDisable()
     {
         Enemy_health.OnMonsterDefeated -= GainExperience;
+        InventoryManager.OnExperienceGained -= GainExperience;
     }
     
     public void GainExperience(int amount)

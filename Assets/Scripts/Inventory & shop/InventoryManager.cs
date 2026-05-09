@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text goldText;
     public GameObject lootPrefab;
     public Transform player;
+
+    public static event Action<int> OnExperienceGained;
+
 
 
 
@@ -45,6 +49,12 @@ public class InventoryManager : MonoBehaviour
         {
             gold += quantity;
             goldText.text = gold.ToString();
+            return;
+        }
+
+        if (itemSO.isExp)
+        {
+            OnExperienceGained?.Invoke(quantity);
             return;
         }
         foreach (var slot in inventorySlots)
@@ -94,7 +104,8 @@ public class InventoryManager : MonoBehaviour
         {
             DropLoot(slot.itemSO, 1);
             slot.quantity -= 1;
-            if (slot.quantity <= 0){
+            if (slot.quantity <= 0)
+            {
                 slot.itemSO = null;
             }
             slot.UpdateUI();

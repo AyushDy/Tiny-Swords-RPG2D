@@ -9,17 +9,16 @@ public class QuestSlot : MonoBehaviour
     public QuestLogUI questLogUI;
 
 
-    private void OnValidate()
-    {
-        if (currentQuest != null)
-            SetQuest(currentQuest);
-    }
-
-
     public void SetQuest(QuestSO quest)
     {
         currentQuest = quest;
         questNameText.text = quest.questName;
+    }
+
+    public void ClearQuest()
+    {
+        currentQuest = null;
+        gameObject.SetActive(false);
     }
 
     public void OnQuestSlotClicked()
