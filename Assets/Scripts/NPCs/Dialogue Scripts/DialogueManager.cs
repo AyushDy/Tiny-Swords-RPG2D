@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -93,11 +94,17 @@ public class DialogueManager : MonoBehaviour
                 choiceButtons[i].onClick.AddListener(() => ChooseOption(option.nextDialogue));
             }
         }
+        else if (currentDialogue.offerQuestOnEnd != null)
+        {
+            QuestEvents.onQuestOfferRequested?.Invoke(currentDialogue.offerQuestOnEnd);
+            EndDialogue();
+        }
         else
         {
             choiceButtons[0].GetComponentInChildren<TMP_Text>().text = "Exit";
             choiceButtons[0].onClick.AddListener(EndDialogue);
             choiceButtons[0].gameObject.SetActive(true);
+            // EventSystem.current.SetSelectedGameObject(choiceButtons[0].gameObject);
         }
     }
 
@@ -118,6 +125,13 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        if(currentDialogue != null)
+        {
+            EventBus.Publish(
+                currentDialogue.dialogueId,
+                new DialogueFinishedEvent(string.Empty, currentDialogue.dialogueId)
+            );
+        }
         dialogueIndex = 0;
         isDialogueActive = false;
         canvasGroup.alpha = 0;

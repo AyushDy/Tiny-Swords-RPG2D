@@ -7,6 +7,12 @@ public class DialogueSO : ScriptableObject
     public DialogueLine[] lines;
     public DialogueOption[] options;
 
+    [Header("Runtime")]
+    public string dialogueId;
+
+    [Header("Offered Quest (Optional)")]
+    public QuestSO2 offerQuestOnEnd;
+
     [Header("Conditional Requirements (Optional)")]
     public ActorSO[] requiredNPCs;
     public LocationSO[] requiredLocations;
@@ -61,4 +67,5 @@ public class DialogueOption
 {
     public string optionText;
     public DialogueSO nextDialogue;
+    public QuestSO2 offerQuest;
 }

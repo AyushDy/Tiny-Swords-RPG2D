@@ -25,21 +25,25 @@ public class QuestLogUI : MonoBehaviour
 
 
 
-    private void OnEnable()
-    {
-        QuestEvents.onQuestOfferRequested += ShowQuestOffer;
-        QuestEvents.onQuestTurnInRequested += ShowQuestTurnIn;
-    }
+    // private void OnEnable()
+    // {
+    //     QuestEvents.onQuestOfferRequested -= ShowQuestOffer;
+    //     QuestEvents.onQuestOfferRequested += ShowQuestOffer;
+    //     QuestEvents.onQuestTurnInRequested += ShowQuestTurnIn;
+    // }
 
-    private void OnDisable()
-    {
-        QuestEvents.onQuestOfferRequested -= ShowQuestOffer;
-        QuestEvents.onQuestTurnInRequested -= ShowQuestTurnIn;
-    }
+    // private void OnDisable()
+    // {
+        
+    //     QuestEvents.onQuestOfferRequested -= ShowQuestOffer;
+    //     QuestEvents.onQuestTurnInRequested -= ShowQuestTurnIn;
+    // }
 
     #region Show Quest Methods
     public void ShowQuestOffer(QuestSO incomingQuest)
     {
+        Debug.Log("Show Quest Offer: " + incomingQuest.questName);
+        RefreshQuestList();
         if (questManager.isQuestAccepted(incomingQuest) || questManager.IsFinishedQuest(incomingQuest))
         {
             questSO = noAvailableQuestSO;
@@ -64,6 +68,7 @@ public class QuestLogUI : MonoBehaviour
 
     public void ShowQuestTurnIn(QuestSO incomingQuest)
     {
+        RefreshQuestList();
         questSO = incomingQuest;
 
         HandleQuestClicked(incomingQuest);
@@ -81,7 +86,9 @@ public class QuestLogUI : MonoBehaviour
 
     #region On Button Clicked Methods
     public void OnAcceptQuestClicked()
-    {
+    { 
+        // QuestEvents.onQuestAccepted?.Invoke(questSO);
+        
         questManager.AcceptQuest(questSO);
         SetCanvasGroup(completeCanvas, false);
         SetCanvasGroup(acceptCanvas, false);
@@ -93,6 +100,10 @@ public class QuestLogUI : MonoBehaviour
     public void OnDeclineQuestClicked()
     {
         SetCanvasGroup(questCanvas, false);
+        SetCanvasGroup(acceptCanvas, false);
+        SetCanvasGroup(DeclineCanvas, false);
+        SetCanvasGroup(completeCanvas, false);
+        Debug.Log("Quest Declined: " + questSO.questName);
     }
 
     public void OnCompleteQuestClicked()

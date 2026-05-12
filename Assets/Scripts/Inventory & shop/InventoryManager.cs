@@ -45,6 +45,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddToInventory(ItemSO itemSO, int quantity)
     {
+
         if (itemSO.isGold)
         {
             gold += quantity;
@@ -57,6 +58,9 @@ public class InventoryManager : MonoBehaviour
             OnExperienceGained?.Invoke(quantity);
             return;
         }
+
+        int originalQuantity = quantity;
+
         foreach (var slot in inventorySlots)
         {
             if (slot.itemSO == itemSO && slot.quantity < itemSO.stackSize)
@@ -88,13 +92,21 @@ public class InventoryManager : MonoBehaviour
                 if (quantity <= 0)
                     return;
             }
-
-
         }
 
         if (quantity > 0)
         {
             DropLoot(itemSO, quantity);
+        }
+
+        int insertedAmount = originalQuantity - quantity;
+
+        if (insertedAmount > 0)
+        {
+            EventBus.Publish(
+             itemSO.itemId,
+             new ItemCollectedEvent(itemSO.itemId, insertedAmount)
+            );
         }
     }
 
@@ -152,5 +164,37 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return totalQuantity;
+    }
+
+    public bool RemoveItem(ItemSO itemSO, int quantity)
+    {
+        if (!HasItem(itemSO, quantity))
+            return false;
+        
+        int remainingToRemove = quantity;
+
+        foreach(var slot in inventorySlots)
+        {
+            if(slot.itemSO != itemSO)
+            {
+                continue;
+            }
+            int amountToRemove = Mathf.Min(slot.quantity, remainingToRemove);
+            slot.quantity -= amountToRemove;
+            remainingToRemove -= amountToRemove;
+
+            if(slot.quantity <= 0)
+            {
+                slot.itemSO = null;
+            }
+
+            slot.UpdateUI();
+
+            if(remainingToRemove <= 0)
+            {
+                break;
+            }
+        }
+        return true;
     }
 }

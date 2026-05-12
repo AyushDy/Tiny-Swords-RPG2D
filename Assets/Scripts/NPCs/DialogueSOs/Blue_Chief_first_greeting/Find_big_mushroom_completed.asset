@@ -17,8 +17,10 @@ MonoBehaviour:
     text: I see that you have found a big mushroom. Thank you but i already had a
       meal. You can keep that mushroom.
   options: []
+  offerQuestOnEnd: {fileID: 0}
   requiredNPCs: []
-  requiredLocations: []
+  requiredLocations:
+  - {fileID: 11400000, guid: 81508e7dedb9b4946ad7109173b02c31, type: 2}
   requiredItems:
   - {fileID: 11400000, guid: cc5d3f0fb94db1a44b84634a021b0fc1, type: 2}
   RemoveAfterPlay: 1

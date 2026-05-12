@@ -14,8 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
-    text: I feel very hungry. Please find a big mushroom and bring it to me.
+    text: 'I feel very hungry. '
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Uhh then eat something?
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: I don't have anything on me right now. How about you find me something?
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Yeah what exactly can we find here?
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: Mushrooms, but i want a big one. Can you find a big mushroom for me?
+  - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
+    text: And please cook it in the campfire too while you're at it, thanks!
   options: []
+  offerQuestOnEnd: {fileID: 11400000, guid: 6211190db6f0f2d45aa8bdcd4cdf45d5, type: 2}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []
+  RemoveAfterPlay: 0
+  removeTheseOnPlay: []

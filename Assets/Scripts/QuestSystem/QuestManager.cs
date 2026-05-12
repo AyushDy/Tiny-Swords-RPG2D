@@ -8,15 +8,15 @@ public class QuestManager : MonoBehaviour
 
 
 
-    private void OnEnable()
-    {
-        QuestEvents.IsQuestComplete += IsQuestComplete;
-    }
+    // private void OnEnable()
+    // {
+    //     QuestEvents.IsQuestComplete += IsQuestComplete;
+    // }
 
-    private void OnDisable()
-    {
-        QuestEvents.IsQuestComplete -= IsQuestComplete;
-    }
+    // private void OnDisable()
+    // {
+    //     QuestEvents.IsQuestComplete -= IsQuestComplete;
+    // }
 
     public bool IsQuestComplete(QuestSO questSO)
     {

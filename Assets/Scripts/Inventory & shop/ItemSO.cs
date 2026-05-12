@@ -12,6 +12,9 @@ public class ItemSO : ScriptableObject
     public bool isExp;
     public int stackSize = 3;
 
+    [Header("Runtime")]
+    public string itemId;
+
     [Header("Stats")]
     public int currentHealth;
     public int maxHealth;

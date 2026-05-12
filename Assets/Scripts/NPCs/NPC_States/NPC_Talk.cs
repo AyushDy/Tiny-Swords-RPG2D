@@ -16,6 +16,16 @@ public class NPC_talk : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
     }
 
+    // private void Start()
+    // {
+    //     QuestEvents.onQuestAccepted += OnQuestAccepted_RemoveOfferings;
+    // }
+
+    // private void OnDestroy()
+    // {
+    //     QuestEvents.onQuestAccepted -= OnQuestAccepted_RemoveOfferings;
+    // }
+
     private void OnEnable()
     {
         DialogueManager.OnDialogueOptionSelected += HandleDialogueOptionSelected;
@@ -92,6 +102,23 @@ public class NPC_talk : MonoBehaviour
                 }
             }
             return;
+        }
+    }
+
+
+    private void OnQuestAccepted_RemoveOfferings(QuestSO2 acceptedQuest)
+    {
+        for (int i = conversations.Count - 1; i >= 0; i--)
+        {
+            var convo = conversations[i];
+
+            if(convo == null)
+            continue;
+
+            if(convo.offerQuestOnEnd != null && convo.offerQuestOnEnd == acceptedQuest)
+            {
+                conversations.RemoveAt(i);
+            }
         }
     }
 }

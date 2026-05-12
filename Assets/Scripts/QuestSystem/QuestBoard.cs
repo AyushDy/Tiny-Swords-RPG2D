@@ -9,20 +9,20 @@ public class QuestBoard : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange && Input.GetButtonDown("Interact"))
-        {
-            bool canTurnInQuest = questToTurnIn != null && QuestEvents.IsQuestComplete?.Invoke(questToTurnIn) == true;
+        // if (playerInRange && Input.GetButtonDown("Interact"))
+        // {
+        //     bool canTurnInQuest = questToTurnIn != null && QuestEvents.IsQuestComplete?.Invoke(questToTurnIn) == true;
 
-            if (canTurnInQuest)
-            {
-                QuestEvents.onQuestTurnInRequested?.Invoke(questToTurnIn);
-            }
+        //     if (canTurnInQuest)
+        //     {
+        //         QuestEvents.onQuestTurnInRequested?.Invoke(questToTurnIn);
+        //     }
 
-            else
-            {
-                QuestEvents.onQuestOfferRequested?.Invoke(questToOffer);
-            }
-        }
+        //     else
+        //     {
+        //         QuestEvents.onQuestOfferRequested?.Invoke(questToOffer);
+        //     }
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

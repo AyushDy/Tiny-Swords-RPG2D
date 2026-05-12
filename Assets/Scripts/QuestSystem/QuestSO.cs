@@ -33,5 +33,4 @@ public class QuestReward
 {
     public ItemSO itemSO;
     public int quantity;
-    public QuestSO offerQuest;
 }
