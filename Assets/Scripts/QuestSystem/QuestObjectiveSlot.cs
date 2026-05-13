@@ -14,6 +14,8 @@ public class QuestObjectiveSlot : MonoBehaviour
         objectiveText.text = description;
         progressText.text = progress;
 
+        Debug.Log($"Description: {description}");
+
         Color color = isComplete ? Color.green : Color.white;
         objectiveText.color = color;
         progressText.color = color;

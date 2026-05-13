@@ -6,14 +6,16 @@ public class KillEnemyObjectiveRuntime : ObjectiveRuntime
     private int requiredKills;
     private int currentKills;
 
+    
     public override int CurrentAmount => currentKills;
     public override int RequiredAmount => requiredKills;
+    
 
-
-    public KillEnemyObjectiveRuntime(string enemyId, int requiredKills)
+    public KillEnemyObjectiveRuntime(string enemyId, int requiredKills, string description)
     {
         this.enemyId = enemyId;
         this.requiredKills = requiredKills;
+        this.description = description;
     }
 
     public override void Activate()
@@ -40,6 +42,8 @@ public class KillEnemyObjectiveRuntime : ObjectiveRuntime
         }
 
         currentKills++;
+
+        NotifyProgress();
 
         Debug.Log(
             $"[Objective] {enemyId} killed. Current kills : {currentKills}/{requiredKills}"

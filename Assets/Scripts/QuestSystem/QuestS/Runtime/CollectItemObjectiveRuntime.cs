@@ -10,10 +10,11 @@ public class CollectItemObjectiveRuntime : ObjectiveRuntime
     public override int CurrentAmount => currentAmount;
     public override int RequiredAmount => requiredAmount;
 
-    public CollectItemObjectiveRuntime(ItemSO item, int amount)
+    public CollectItemObjectiveRuntime(ItemSO item, int amount, string description)
     {
         targetItem = item;
         requiredAmount = amount;
+        this.description = description;
     }
 
     public override void Activate()
@@ -57,6 +58,8 @@ public class CollectItemObjectiveRuntime : ObjectiveRuntime
         {
             Complete();
         }
+
+        NotifyProgress();
     }
 
 

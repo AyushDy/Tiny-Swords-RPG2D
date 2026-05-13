@@ -274,6 +274,7 @@ MonoBehaviour:
     m_Bits: 8
   audioSource: {fileID: -2490641153096608089}
   chaseSound: {fileID: 8300000, guid: 27cd34d2e1168484a8fffd0edc604d2a, type: 3}
+  chaseSoundCooldown: 12
 --- !u!114 &2710343417853428301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2494332b1d6644a837239d1cfdeb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_health
+  enemyId: goblin_red
   expReward: 5
   currentHealth: 5
   maxHealth: 5

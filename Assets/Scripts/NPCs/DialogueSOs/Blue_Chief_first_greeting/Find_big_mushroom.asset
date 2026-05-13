@@ -26,7 +26,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 12c69f84337aa264598d4408de0e577a, type: 2}
     text: And please cook it in the campfire too while you're at it, thanks!
   options: []
-  offerQuestOnEnd: {fileID: 11400000, guid: 6211190db6f0f2d45aa8bdcd4cdf45d5, type: 2}
+  dialogueId: find_mushroom
+  offerQuestOnEnd: {fileID: 11400000, guid: 66fdcb9b1c5700b4994eaf679067a594, type: 2}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []

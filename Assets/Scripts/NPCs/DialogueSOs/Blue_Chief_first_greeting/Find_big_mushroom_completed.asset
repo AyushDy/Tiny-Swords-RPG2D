@@ -17,6 +17,7 @@ MonoBehaviour:
     text: I see that you have found a big mushroom. Thank you but i already had a
       meal. You can keep that mushroom.
   options: []
+  dialogueId: find_mushroom_completed
   offerQuestOnEnd: {fileID: 0}
   requiredNPCs: []
   requiredLocations:

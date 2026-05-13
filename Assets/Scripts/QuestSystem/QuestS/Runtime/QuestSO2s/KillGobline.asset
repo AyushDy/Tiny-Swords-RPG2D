@@ -10,21 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57efec77fd9b4b844a470e709d08a790, type: 3}
-  m_Name: Find Mushroom
+  m_Name: KillGobline
   m_EditorClassIdentifier: Assembly-CSharp::QuestSO2
-  questId: find_big_mushroom
-  questName: Bigger Mushroom
-  questDescription: Find the big mushroom in the forest.
+  questId: kill_goblins
+  questName: Goblin Mania
+  questDescription: Find and kill two goblins
   objectives:
-  - objectiveType: 1
-    description: Collect Big Mushroom
-    targetId: 
-    targetItem: {fileID: 11400000, guid: cc5d3f0fb94db1a44b84634a021b0fc1, type: 2}
-    requiredAmount: 1
-  - objectiveType: 2
-    description: Submit big mushroom
-    targetId: 
-    targetItem: {fileID: 11400000, guid: cc5d3f0fb94db1a44b84634a021b0fc1, type: 2}
+  - objectiveType: 0
+    description: Kill red faction goblins
+    targetId: goblin_red
+    targetItem: {fileID: 0}
     requiredAmount: 1
   rewards:
   - itemSO: {fileID: 11400000, guid: 24b07f498d089524f801571a4cadc294, type: 2}

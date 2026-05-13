@@ -17,12 +17,32 @@ public class QuestLogUI2 : MonoBehaviour
     [Header("Quest List")]
     [SerializeField] private QuestLogQuestSlot[] questSlots;
 
-
     private QuestRuntime selectedQuest;
 
+
+
+    private void Start()
+    {
+        if (QuestManager2.Instance == null)
+        {
+            Debug.Log($"[QuestLogUI] No QuestManager instance found in the scene.");
+            return;
+        }
+        QuestManager2.Instance.OnQuestStarted += OnQuestListChanged;
+        QuestManager2.Instance.OnQuestRemoved += OnQuestListChanged;
+    }
     private void OnEnable()
     {
         RefreshQuestList();
+    }
+
+    private void OnDisable()
+    {
+        if (QuestManager2.Instance != null)
+        {
+            QuestManager2.Instance.OnQuestStarted -= OnQuestListChanged;
+            QuestManager2.Instance.OnQuestRemoved -= OnQuestListChanged;
+        }
     }
 
     public void RefreshQuestList()
@@ -49,17 +69,33 @@ public class QuestLogUI2 : MonoBehaviour
 
     public void SelectQuest(QuestRuntime runtimeQuest)
     {
+        if (selectedQuest != null)
+        {
+            selectedQuest.OnQuestUpdated -= OnSelectedQuestUpdated;
+        }
+
         selectedQuest = runtimeQuest;
+
+        selectedQuest.OnQuestUpdated += OnSelectedQuestUpdated;
+
+        RefreshQuestDetails();
+    }
+
+    private void OnSelectedQuestUpdated(QuestRuntime quest)
+    {
+        if (quest != selectedQuest) return;
 
         RefreshQuestDetails();
     }
 
     private void RefreshQuestDetails()
     {
-        if(selectedQuest == null ) return;
+        if (selectedQuest == null) return;
 
         questTitleText.text = selectedQuest.questDefinition.questName;
         questDescriptionText.text = selectedQuest.questDefinition.questDescription;
+
+        Debug.Log($"[QuestLogUI] Refreshing UI for state: {selectedQuest.State}");
 
         RefreshObjectives();
         RefreshRewards();
@@ -67,7 +103,7 @@ public class QuestLogUI2 : MonoBehaviour
 
     private void RefreshObjectives()
     {
-        for (int i=0; i < objectiveSlots.Length; i++)
+        for (int i = 0; i < objectiveSlots.Length; i++)
         {
             if (i < selectedQuest.Objectives.Count)
             {
@@ -76,7 +112,7 @@ public class QuestLogUI2 : MonoBehaviour
                 objectiveSlots[i].gameObject.SetActive(true);
 
                 objectiveSlots[i].RefreshObjectives(
-                    objective.Description,
+                    objective.description,
                     $"{objective.CurrentAmount}/{objective.RequiredAmount}",
                     objective.State == ObjectiveState.Completed
                 );
@@ -108,5 +144,11 @@ public class QuestLogUI2 : MonoBehaviour
                 rewardSlots[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    private void OnQuestListChanged(QuestRuntime quest)
+    {
+        Debug.Log("[QuestLogUI] Received quest list change");
+        RefreshQuestList();
     }
 }

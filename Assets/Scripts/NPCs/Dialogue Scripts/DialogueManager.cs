@@ -99,6 +99,11 @@ public class DialogueManager : MonoBehaviour
             QuestEvents.onQuestOfferRequested?.Invoke(currentDialogue.offerQuestOnEnd);
             EndDialogue();
         }
+        else if (currentDialogue.turnInQuestOnEnd != null)
+        {
+            QuestEvents.onQuestTurnInRequested?.Invoke(currentDialogue.turnInQuestOnEnd);
+            EndDialogue();
+        }
         else
         {
             choiceButtons[0].GetComponentInChildren<TMP_Text>().text = "Exit";

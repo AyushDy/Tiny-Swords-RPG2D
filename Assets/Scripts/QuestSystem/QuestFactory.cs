@@ -11,6 +11,8 @@ public static class QuestFactory
         {
             QuestObjectiveDefinition objective = questDefinition.objectives[i];
 
+            Debug.Log($"Creating objective {i} of type {objective.objectiveType} for quest {questDefinition.questId}");
+
             ObjectiveRuntime runtimeObjective = CreateObjective(objective);
 
             if(runtimeObjective == null)
@@ -28,11 +30,13 @@ public static class QuestFactory
         switch(definition.objectiveType)
         {
             case QuestObjectiveType.KillEnemy:
-                return new KillEnemyObjectiveRuntime(definition.targetId, definition.requiredAmount);
+                return new KillEnemyObjectiveRuntime(definition.targetId, definition.requiredAmount, definition.description);
             case QuestObjectiveType.Dialogue:
                 return new DialogueObjectiveRuntime(definition.targetId);
             case QuestObjectiveType.CollectItem:
-                return new CollectItemObjectiveRuntime(definition.targetItem, definition.requiredAmount);
+                return new CollectItemObjectiveRuntime(definition.targetItem, definition.requiredAmount, definition.description);
+            case QuestObjectiveType.SubmitItem:
+                return new SubmitItemObjectiveRuntime(definition.targetItem, definition.requiredAmount, definition.description);
             default:
                 Debug.LogError($"[QuestFactory] Unsupported objective type {definition.objectiveType}");
                 return null;

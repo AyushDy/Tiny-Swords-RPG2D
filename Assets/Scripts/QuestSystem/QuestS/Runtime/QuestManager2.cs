@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,14 +7,18 @@ public class QuestManager2 : MonoBehaviour
 {
     public static QuestManager2 Instance;
 
+    public Action<QuestRuntime> OnQuestStarted;
+    public Action<QuestRuntime> OnQuestRemoved;
+    public Action<QuestSO2> OnQuestOfferReceived;
+
     private List<QuestRuntime> activeQuests = new List<QuestRuntime>();
     public IReadOnlyList<QuestRuntime> ActiveQuests => activeQuests;
 
-
     private List<QuestRuntime> completedQuests = new List<QuestRuntime>();
 
-
     private Dictionary<string, QuestRuntime> questLookup = new();
+
+    private QuestSO2 pendingQuestOffer;
 
     void Awake()
     {
@@ -23,24 +28,26 @@ public class QuestManager2 : MonoBehaviour
     private void OnEnable()
     {
         QuestEvents.onQuestOfferRequested += OnQuestOfferRequested;
+        QuestEvents.onQuestTurnInRequested += OnQuestTurnInRequested;
     }
 
     private void OnDisable()
     {
         QuestEvents.onQuestOfferRequested -= OnQuestOfferRequested;
+        QuestEvents.onQuestTurnInRequested -= OnQuestTurnInRequested;
     }
 
     public void StartQuest(QuestSO2 questDefinition)
     {
         if (questDefinition == null)
         {
-            Debug.LogError($"[QuestManager] Cannot start quest because the definition is null.");
+            Debug.Log($"[QuestManager] Cannot start quest because the definition is null.");
             return;
         }
 
         if (questLookup.ContainsKey(questDefinition.questId))
         {
-            Debug.LogError($"[QuestManager] Cannot start quest {questDefinition.questId} because it is already active.");
+            Debug.Log($"[QuestManager] Cannot start quest {questDefinition.questId} because it is already active.");
             return;
         }
 
@@ -52,8 +59,13 @@ public class QuestManager2 : MonoBehaviour
 
         runtimeQuest.OnQuestReadyToTurnIn += OnQuestReadyToTurnIn;
         runtimeQuest.OnQuestCompleted += OnQuestCompleted;
+        runtimeQuest.OnQuestUpdated += OnQuestUpdated;
 
         runtimeQuest.Accept();
+
+        Debug.Log("[QuestManager] Invoking OnQuestStarted");
+
+        OnQuestStarted?.Invoke(runtimeQuest);
 
         Debug.Log($"[QuestManager] Started quest : {questDefinition.questId}");
     }
@@ -71,7 +83,7 @@ public class QuestManager2 : MonoBehaviour
     {
         if (questSO == null)
         {
-            Debug.LogError($"[QuestManager] Cannot start quest because the definition is null.");
+            Debug.Log($"[QuestManager] Cannot start quest because the definition is null.");
             return;
         }
 
@@ -79,11 +91,14 @@ public class QuestManager2 : MonoBehaviour
 
         if (convertedQuest == null)
         {
-            Debug.LogError($"[QuestManager] Cannot start quest because the definition is not of type QuestSO2.");
+            Debug.Log($"[QuestManager] Cannot start quest because the definition is not of type QuestSO2.");
             return;
         }
+        pendingQuestOffer = convertedQuest;
 
-        StartQuest(convertedQuest);
+        OnQuestOfferReceived?.Invoke(pendingQuestOffer);
+
+        Debug.Log($"[QuestOffer] Pending offer: {convertedQuest.questId}");
     }
 
     private void OnQuestReadyToTurnIn(QuestRuntime quest)
@@ -97,6 +112,13 @@ public class QuestManager2 : MonoBehaviour
 
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
+
+        OnQuestRemoved?.Invoke(quest);
+    }
+
+    private void OnQuestUpdated(QuestRuntime quest)
+    {
+        Debug.Log($"[QuestManager] Quest updated : {quest.questId}");
     }
 
     public bool TryCompleteQuest(string questId)
@@ -105,13 +127,13 @@ public class QuestManager2 : MonoBehaviour
 
         if (quest == null)
         {
-            Debug.LogError($"[QuestManager] Quest with ID {questId} not found.");
+            Debug.Log($"[QuestManager] Quest with ID {questId} not found.");
             return false;
         }
 
         if (quest.State != QuestState.ReadyToTurnIn)
         {
-            Debug.LogError($"[QuestManager] Quest with ID {questId} is not ready to turn in.");
+            Debug.Log($"[QuestManager] Quest with ID {questId} is not ready to turn in.");
             return false;
         }
 
@@ -160,7 +182,7 @@ public class QuestManager2 : MonoBehaviour
 
         if (quest == null)
         {
-            Debug.LogError($"[QuestManager] Quest with ID {questId} not found.");
+            Debug.Log($"[QuestManager] Quest with ID {questId} not found.");
             return false;
         }
 
@@ -179,7 +201,7 @@ public class QuestManager2 : MonoBehaviour
 
             if (!submitted)
             {
-                Debug.LogError($"[QuestManager] Failed to submit item for objective {i} of quest {questId}.");
+                Debug.Log($"[QuestManager] Failed to submit item for objective {i} of quest {questId}.");
                 return false;
             }
 
@@ -193,4 +215,46 @@ public class QuestManager2 : MonoBehaviour
 
         return false;
     }
+
+    public void AcceptPendingQuestOffer()
+    {
+        if(pendingQuestOffer == null)
+        {
+            Debug.Log($"[QuestManager] No pending quest offer to accept.");
+            return;
+        }
+
+        StartQuest(pendingQuestOffer);
+        pendingQuestOffer = null;
+    }
+   
+    public void DeclinePendingQuestOffer()
+    {
+        if(pendingQuestOffer == null)
+        {
+            Debug.Log($"[QuestManager] No pending quest offer to decline.");
+            return;
+        }
+
+        Debug.Log($"[QuestManager] Declined quest offer: {pendingQuestOffer.questId}");
+        pendingQuestOffer = null;
+    }
+
+    public bool IsQuestAvailable(string questId)
+    {
+        return(!questLookup.ContainsKey(questId));
+    }
+
+    private void OnQuestTurnInRequested(QuestSO2 questSO)
+    {
+        if(questSO == null)
+        {
+            Debug.Log($"[QuestManager] Turn-in quest is null.");
+            return;
+        }
+
+        TryTurnInQuest(questSO.questId);
+    }
+
+
 }

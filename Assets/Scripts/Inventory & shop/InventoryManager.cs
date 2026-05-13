@@ -74,7 +74,7 @@ public class InventoryManager : MonoBehaviour
                 slot.UpdateUI();
 
                 if (quantity <= 0)
-                    return;
+                    break;
             }
         }
 
@@ -90,7 +90,7 @@ public class InventoryManager : MonoBehaviour
                 slot.UpdateUI();
 
                 if (quantity <= 0)
-                    return;
+                    break;
             }
         }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy_health : MonoBehaviour
 {
+    public string enemyId = EnemyIds.GoblinRed;
 
     public int expReward = 5;
     public delegate void MonsterDefeated(int expReward);
@@ -31,9 +32,12 @@ public class Enemy_health : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        else if (currentHealth <=0)
+        else if (currentHealth <= 0)
         {
             OnMonsterDefeated(expReward);
+
+            EventBus.Publish(enemyId,new EnemyKilledEvent(enemyId));
+
             Destroy(gameObject);
         }
     }

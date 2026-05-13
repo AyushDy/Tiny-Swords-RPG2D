@@ -10,6 +10,7 @@ public class QuestRuntime
 
     public Action<QuestRuntime> OnQuestReadyToTurnIn;
     public Action<QuestRuntime> OnQuestCompleted;
+    public Action<QuestRuntime> OnQuestUpdated;
 
     private List<ObjectiveRuntime> objectives = new List<ObjectiveRuntime>();
     public IReadOnlyList<ObjectiveRuntime> Objectives => objectives;
@@ -26,6 +27,7 @@ public class QuestRuntime
         objectives.Add(objective);
 
         objective.OnObjectiveCompleted += CheckCompletion;
+        objective.OnObjectiveProgressed += NotifyQuestUpdated;
     }
 
     public void Accept()
@@ -65,6 +67,8 @@ public class QuestRuntime
     {
         State = QuestState.ReadyToTurnIn;
 
+        NotifyQuestUpdated();
+
         Debug.Log($"[Quest] Quest {questId} is ready to turn in!");
 
         OnQuestReadyToTurnIn?.Invoke(this);
@@ -80,6 +84,8 @@ public class QuestRuntime
 
         State = QuestState.Completed;
 
+        NotifyQuestUpdated();
+
         Debug.Log($"[Quest] Quest {questId} completed!");
 
         OnQuestCompleted?.Invoke(this);
@@ -91,6 +97,8 @@ public class QuestRuntime
             return;
 
         State = QuestState.Failed;
+
+        NotifyQuestUpdated();
 
         Debug.Log($"[Quest] Quest {questId} failed.");
 
@@ -104,6 +112,8 @@ public class QuestRuntime
 
         State = QuestState.Abandoned;
 
+        NotifyQuestUpdated();
+
         Debug.Log($"[Quest] Quest {questId} abandoned.");
 
         CleanupObjectives();
@@ -116,5 +126,10 @@ public class QuestRuntime
         {
             objectives[i].Deactivate();
         }
+    }
+
+    private void NotifyQuestUpdated()
+    {
+        OnQuestUpdated?.Invoke(this);
     }
 }

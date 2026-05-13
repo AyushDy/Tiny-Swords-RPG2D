@@ -10,16 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
-  m_Name: Greetings
+  m_Name: kill_goblins_red_pawn
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: 9458f67f04adad1429d3d0bf16c5dfbd, type: 2}
-    text: 'Greetings
+    text: 'Please kill these two goblins from the forest
 
 '
   options: []
+  dialogueId: kill_goblins_red_pawn
+  offerQuestOnEnd: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []
+  requiredQuest: {fileID: 0}
+  requiredQuestState: 0
   RemoveAfterPlay: 0
   removeTheseOnPlay: []

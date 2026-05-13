@@ -443,7 +443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9056113417092720877}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: QuestLogUI, Assembly-CSharp
         m_MethodName: OnDeclineQuestClicked
         m_Mode: 1
@@ -1653,7 +1653,7 @@ GameObject:
   - component: {fileID: 185998703865023187}
   - component: {fileID: 9130770472127192141}
   - component: {fileID: 3500080193161942263}
-  - component: {fileID: 8117470613472739566}
+  - component: {fileID: 433193487340717083}
   m_Layer: 5
   m_Name: QuestCanvas
   m_TagString: Untagged
@@ -1759,7 +1759,7 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &8117470613472739566
+--- !u!114 &433193487340717083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1768,9 +1768,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4086208677651518626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92969c67b7e2224caefd43d871dd0a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 179dc4c2f020af3499a9ca5319176a00, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager2
 --- !u!1 &4132863258416196023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2795,6 @@ GameObject:
   - component: {fileID: 296635157744915562}
   - component: {fileID: 1135754516249111057}
   - component: {fileID: 7423368858547562091}
-  - component: {fileID: 9056113417092720877}
   m_Layer: 5
   m_Name: QuestLog
   m_TagString: Untagged
@@ -2862,53 +2861,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.5
---- !u!114 &9056113417092720877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6416616041438255716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d599d56d595dc4e4bb65dd21ac8f8eb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestLogUI
-  questManager: {fileID: 8117470613472739566}
-  questNameText: {fileID: 4076174917159552744}
-  questDescriptionText: {fileID: 8051040282506915940}
-  objectiveSlots:
-  - {fileID: 7497756841474565069}
-  - {fileID: 3697838129046270526}
-  - {fileID: 3360159820626173304}
-  rewardSlots:
-  - {fileID: 4177762630908084593}
-  - {fileID: 4972292410390342359}
-  - {fileID: 4257360133505982148}
-  - {fileID: 7153053827882479553}
-  - {fileID: 5609228140011301412}
-  - {fileID: 8212308720423717631}
-  noAvailableQuestSO: {fileID: 11400000, guid: ada1deebe0e3aad4fa254f79ddae1754, type: 2}
-  questSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  questCanvas: {fileID: 3500080193161942263}
-  acceptCanvas: {fileID: 0}
-  DeclineCanvas: {fileID: 0}
-  completeCanvas: {fileID: 0}
 --- !u!1 &6540250632497559325
 GameObject:
   m_ObjectHideFlags: 0

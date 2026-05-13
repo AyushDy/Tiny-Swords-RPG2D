@@ -4,21 +4,17 @@ public class SubmitItemObjectiveRuntime : ObjectiveRuntime
 {
     private ItemSO targetItem;
     private int requiredAmount;
+    private int submittedAmount;
 
-    public override int CurrentAmount
-    {
-        get
-        {
-            return InventoryManager.Instance.GetItemQuantity(targetItem);
-        }
-    }
+    public override int CurrentAmount => submittedAmount;
 
     public override int RequiredAmount => requiredAmount;
 
-    public SubmitItemObjectiveRuntime(ItemSO targetItem, int requiredAmount)
+    public SubmitItemObjectiveRuntime(ItemSO targetItem, int requiredAmount, string description)
     {
         this.targetItem = targetItem;
         this.requiredAmount = requiredAmount;
+        this.description = description;
     }
 
     public override void Activate()
@@ -51,6 +47,8 @@ public class SubmitItemObjectiveRuntime : ObjectiveRuntime
 
     private void Complete()
     {
+        submittedAmount = requiredAmount;
+        NotifyProgress();
         State = ObjectiveState.Completed;
 
         Debug.Log($"Submitted item : {targetItem.itemName} x{requiredAmount}");

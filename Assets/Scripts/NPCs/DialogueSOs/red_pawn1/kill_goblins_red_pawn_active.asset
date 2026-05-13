@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
-  m_Name: find_purple
+  m_Name: kill_goblins_red_pawn_active
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: 9458f67f04adad1429d3d0bf16c5dfbd, type: 2}
-    text: 'Hi you found me! Please find my brother purple too
-
-'
+    text: Did you deal with the goblins yet?
   options: []
-  dialogueId: find_purple
-  offerQuestOnEnd: {fileID: 0}
+  dialogueId: kill_goblins_red_pawn
+  offerQuestOnEnd: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []
-  requiredQuest: {fileID: 0}
-  requiredQuestState: 0
-  RemoveAfterPlay: 1
-  removeTheseOnPlay: []
+  requiredQuest: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
+  requiredQuestState: 2
+  RemoveAfterPlay: 0
+  removeTheseOnPlay:
+  - {fileID: 11400000, guid: a3409a6c5d85bf3429bf0c8397ae8f9e, type: 2}

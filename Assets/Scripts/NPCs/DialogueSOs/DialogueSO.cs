@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DialogueSO", menuName = "Dialogue/DialogueNode")]
@@ -13,10 +14,17 @@ public class DialogueSO : ScriptableObject
     [Header("Offered Quest (Optional)")]
     public QuestSO2 offerQuestOnEnd;
 
+    [Header("Turn in Quest (Optional)")]
+    public QuestSO2 turnInQuestOnEnd;
+
     [Header("Conditional Requirements (Optional)")]
     public ActorSO[] requiredNPCs;
     public LocationSO[] requiredLocations;
     public ItemSO[] requiredItems;
+
+    [Header("Quest State Requirements")]
+    public QuestSO2 requiredQuest;
+    public QuestDialogueState requiredQuestState;
 
     [Header("Control Flags")]
     public bool RemoveAfterPlay;
@@ -33,6 +41,7 @@ public class DialogueSO : ScriptableObject
                     return false;
             }
         }
+
         if(requiredLocations.Length > 0)
         {
             foreach(var location in requiredLocations)
@@ -50,6 +59,35 @@ public class DialogueSO : ScriptableObject
                     return false;
             }
         }
+
+        if(requiredQuest != null)
+        {
+            string questId = requiredQuest.questId;
+
+            switch (requiredQuestState)
+            {
+                case QuestDialogueState.Available :
+                    if(!QuestManager2.Instance.IsQuestAvailable(questId))
+                        return false;
+                    break;
+                
+                case QuestDialogueState.Active :
+                    if(!QuestManager2.Instance.IsQuestActive(questId))
+                        return false;
+                    break;
+                
+                case QuestDialogueState.ReadyToTurnIn :
+                    if(!QuestManager2.Instance.IsQuestReadyToTurnIn(questId))
+                        return false;
+                    break;
+                
+                case QuestDialogueState.Completed :
+                    if(!QuestManager2.Instance.IsQuestCompleted(questId))
+                        return false;
+                    break;
+            }
+        }
+
         return true;
     }
 }
@@ -68,4 +106,13 @@ public class DialogueOption
     public string optionText;
     public DialogueSO nextDialogue;
     public QuestSO2 offerQuest;
+}
+
+public enum QuestDialogueState
+{
+    None,
+    Available,
+    Active,
+    ReadyToTurnIn,
+    Completed,
 }
