@@ -17,6 +17,8 @@ public class QuestLogUI2 : MonoBehaviour
     [Header("Quest List")]
     [SerializeField] private QuestLogQuestSlot[] questSlots;
 
+    public CanvasGroup questLogCanvasGroup;
+
     private QuestRuntime selectedQuest;
 
 
@@ -28,11 +30,18 @@ public class QuestLogUI2 : MonoBehaviour
             Debug.Log($"[QuestLogUI] No QuestManager instance found in the scene.");
             return;
         }
-        QuestManager2.Instance.OnQuestStarted += OnQuestListChanged;
-        QuestManager2.Instance.OnQuestRemoved += OnQuestListChanged;
     }
     private void OnEnable()
     {
+        if(QuestManager2.Instance == null)
+        {
+            Debug.Log($"[QuestLogUI] No QuestManager instance found in the scene.");
+            return;
+        }
+
+        QuestManager2.Instance.OnQuestStarted += OnQuestListChanged;
+        QuestManager2.Instance.OnQuestRemoved += OnQuestListChanged;
+        
         RefreshQuestList();
     }
 
@@ -150,5 +159,12 @@ public class QuestLogUI2 : MonoBehaviour
     {
         Debug.Log("[QuestLogUI] Received quest list change");
         RefreshQuestList();
+    }
+
+    public void CloseQuestCanvas()
+    {
+        questLogCanvasGroup.alpha = 0;
+        questLogCanvasGroup.interactable = false;
+        questLogCanvasGroup.blocksRaycasts = false;
     }
 }

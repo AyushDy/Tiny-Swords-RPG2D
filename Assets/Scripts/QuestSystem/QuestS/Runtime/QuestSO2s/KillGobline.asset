@@ -20,7 +20,7 @@ MonoBehaviour:
     description: Kill red faction goblins
     targetId: goblin_red
     targetItem: {fileID: 0}
-    requiredAmount: 1
+    requiredAmount: 2
   rewards:
   - itemSO: {fileID: 11400000, guid: 24b07f498d089524f801571a4cadc294, type: 2}
     quantity: 100

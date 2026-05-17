@@ -189,6 +189,9 @@ GameObject:
   - component: {fileID: 3677699035860867133}
   - component: {fileID: 1401371392258043547}
   - component: {fileID: 4025556928326693329}
+  - component: {fileID: 4415592616076891957}
+  - component: {fileID: 1094577215865163860}
+  - component: {fileID: 3859892709839195648}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -397,7 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b7d29b5a140ec45af04cb2515cdf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_movement
-  facingDirection: 1
   rb: {fileID: 2094109093842643635}
   anim: {fileID: 7061029590558547454}
   Player_combat: {fileID: 3388920343499016555}
@@ -430,6 +432,8 @@ MonoBehaviour:
   comboStep: 0
   canQueueNext: 0
   queuedNext: 0
+  canReceiveInput: 0
+  inputReceived: 0
 --- !u!114 &2756412269693265033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,3 +604,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_AnimationHandler
   anim: {fileID: 7061029590558547454}
   state: {fileID: 7584264666274892431}
+--- !u!114 &4415592616076891957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220124159849049732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db576683a2d92d41a46e7b0cc8b505f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FacingController
+  facingDirection: 1
+--- !u!114 &1094577215865163860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220124159849049732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57fb48bb50f08848882da62ee2bd351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneActor
+  actorId: player
+--- !u!195 &3859892709839195648
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220124159849049732}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 4
+  m_Acceleration: 1
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

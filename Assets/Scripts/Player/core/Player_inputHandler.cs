@@ -18,14 +18,18 @@ public class Player_inputHandler : MonoBehaviour
 
     void HandleInput()
     {
+        if (state.InputLocked)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Dash"))
         {
             dash.TryDash();
         }
 
-        if(Input.GetButtonDown("Slash"))
+        if (Input.GetButtonDown("Slash"))
         {
-            if(state.Equipment == EquipmentState.Bow)
+            if (state.Equipment == EquipmentState.Bow)
             {
                 bow.StartShooting();
                 return;

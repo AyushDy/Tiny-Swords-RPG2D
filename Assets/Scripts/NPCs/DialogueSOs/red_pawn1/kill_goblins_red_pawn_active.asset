@@ -16,13 +16,13 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9458f67f04adad1429d3d0bf16c5dfbd, type: 2}
     text: Did you deal with the goblins yet?
   options: []
-  dialogueId: kill_goblins_red_pawn
-  offerQuestOnEnd: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
+  dialogueId: kill_goblins_red_pawn_active
+  offerQuestOnEnd: {fileID: 0}
+  turnInQuestOnEnd: {fileID: 0}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []
   requiredQuest: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
   requiredQuestState: 2
   RemoveAfterPlay: 0
-  removeTheseOnPlay:
-  - {fileID: 11400000, guid: a3409a6c5d85bf3429bf0c8397ae8f9e, type: 2}
+  removeTheseOnPlay: []

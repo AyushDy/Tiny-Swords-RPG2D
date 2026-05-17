@@ -109,6 +109,7 @@ public class QuestManager2 : MonoBehaviour
     private void OnQuestCompleted(QuestRuntime quest)
     {
         Debug.Log($"[QuestManager] Quest completed : {quest.questId}");
+        GiveRewards(quest);
 
         activeQuests.Remove(quest);
         completedQuests.Add(quest);
@@ -256,5 +257,23 @@ public class QuestManager2 : MonoBehaviour
         TryTurnInQuest(questSO.questId);
     }
 
+    private void GiveRewards(QuestRuntime quest)
+    {
+        List<QuestRewardDefinition> rewards = quest.questDefinition.rewards;
+
+        for(int i = 0; i < rewards.Count; i++)
+        {
+            QuestRewardDefinition reward = rewards[i];
+
+            if(reward.itemSO == null)
+            {
+                continue;
+            }
+
+            InventoryManager.Instance.AddToInventory(reward.itemSO, reward.quantity);
+
+            Debug.Log($"[QuestManager] Gave reward: {reward.quantity}x {reward.itemSO.itemName}");
+        }
+    }
 
 }

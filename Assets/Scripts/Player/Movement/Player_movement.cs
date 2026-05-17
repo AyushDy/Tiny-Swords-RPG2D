@@ -1,16 +1,17 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player_movement : MonoBehaviour
 {
 
-    public int facingDirection = 1;
     public Rigidbody2D rb;
     public Animator anim;
     public Player_combat Player_combat;
     public Player_dash Player_dash;
     public Player_state Player_state;
+
 
     float axisBufferTime = 0.1f;
     float lastHorizontal;
@@ -21,10 +22,29 @@ public class Player_movement : MonoBehaviour
 
 
     private bool isKnockedBack;
+    private FacingController facingController;
+
+    private void Awake()
+    {
+        facingController = GetComponent<FacingController>();
+    }
 
 
     void FixedUpdate()
     {
+        SceneActor actor = GetComponent<SceneActor>();
+
+        if (actor != null && actor.IsSceneControlled)
+        {
+            HandleSceneFacing();
+            return;
+        }
+
+        if (Player_state.InputLocked)
+        {
+            return;
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -74,34 +94,54 @@ public class Player_movement : MonoBehaviour
         }
         else if (!isKnockedBack && !Player_dash.IsDashing)
         {
-            if (((horizontal > 0 && facingDirection < 0) || (horizontal < 0 && facingDirection > 0)) && Player_state.Locomotion != LocomotionState.Aiming)
+            if (((horizontal > 0 && facingController.FacingDirection < 0) || (horizontal < 0 && facingController.FacingDirection > 0)) && Player_state.Locomotion != LocomotionState.Aiming)
             {
-                Flip();
+                facingController.FaceDirection(horizontal);
             }
             else if (Player_state.Locomotion == LocomotionState.Aiming)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if ((mousePosition.x > transform.position.x && facingDirection < 0) || (mousePosition.x < transform.position.x && facingDirection > 0))
+                if ((mousePosition.x > transform.position.x && facingController.FacingDirection < 0) || (mousePosition.x < transform.position.x && facingController.FacingDirection > 0))
                 {
-                    Flip();
+                    facingController.FaceDirection(horizontal);
                 }
             }
-            bool movingBackward = (finalHorizontal > 0 && facingDirection < 0) ||
-                                 (finalHorizontal < 0 && facingDirection > 0);
+            bool movingBackward = (finalHorizontal > 0 && facingController.FacingDirection < 0) ||
+                                 (finalHorizontal < 0 && facingController.FacingDirection > 0);
 
             float currentSpeed = movingBackward ? StatsManager.Instance.walkingSpeed : StatsManager.Instance.speed;
 
-            anim.SetFloat("horizontal", Mathf.Abs(finalHorizontal));
-            anim.SetFloat("vertical", Mathf.Abs(finalVertical));
+            anim.SetFloat("horizontal", Mathf.Abs(rb.linearVelocity.x));
+            anim.SetFloat("vertical", Mathf.Abs(rb.linearVelocity.y));
 
             rb.linearVelocity = moveDirection.normalized * currentSpeed;
         }
     }
 
-    public void Flip()
+    private void HandleSceneFacing()
     {
-        facingDirection *= -1;
-        transform.localScale = new Vector3(transform.lossyScale.x * -1, transform.localScale.y, transform.localScale.z);
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+
+        if (agent == null || !agent.enabled)
+        {
+            return;
+        }
+
+        Vector2 velocity = rb.linearVelocity;
+
+        if (velocity.x > 0 && facingController.FacingDirection < 0)
+        {
+            facingController.FaceDirection(velocity.x);
+        }
+        else if (velocity.x < 0 && facingController.FacingDirection > 0)
+        {
+            facingController.FaceDirection(velocity.x);
+        }
+    }
+
+    public void FaceDirection(float directionX)
+    {
+        facingController.FaceDirection(directionX);
     }
 
 

@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37838c88b38295c40a41c5d79ba71632, type: 3}
+  m_Name: TestScene
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSequenceSO
+  steps:
+  - rid: 7760134589711647005
+  - rid: 7760134613496496481
+  - rid: 7760134613496496483
+  - rid: 7760134613496496484
+  - rid: 7760134613496496485
+  - rid: 7760134613496496490
+  - rid: 7760134613496496494
+  - rid: 7760134613496496491
+  - rid: 7760134613496496499
+  - rid: 7760134613496496496
+  - rid: 7760134613496496492
+  - rid: 7760134613496496497
+  - rid: 7760134613496496493
+  - rid: 7760134613496496501
+  - rid: 7760134613496496502
+  - rid: 7760134613496496503
+  references:
+    version: 2
+    RefIds:
+    - rid: 7760134589711647005
+      type: {class: PlayerControlStep, ns: , asm: Assembly-CSharp}
+      data:
+        enableControl: 0
+    - rid: 7760134613496496481
+      type: {class: SetSpriteRendererStep, ns: , asm: Assembly-CSharp}
+      data:
+        objectId: player
+        enabledState: 0
+    - rid: 7760134613496496483
+      type: {class: PlayObjectAnimationtep, ns: , asm: Assembly-CSharp}
+      data:
+        objectId: portal_purple
+        triggerName: open
+        waitDuration: 2
+    - rid: 7760134613496496484
+      type: {class: SetSpriteRendererStep, ns: , asm: Assembly-CSharp}
+      data:
+        objectId: player
+        enabledState: 1
+    - rid: 7760134613496496485
+      type: {class: MoveActorStep, ns: , asm: Assembly-CSharp}
+      data:
+        actorId: player
+        destination: targetA
+        speed: 1
+    - rid: 7760134613496496490
+      type: {class: FaceDirectionStep, ns: , asm: Assembly-CSharp}
+      data:
+        actorId: player
+        direction: -1
+    - rid: 7760134613496496491
+      type: {class: FaceDirectionStep, ns: , asm: Assembly-CSharp}
+      data:
+        actorId: player
+        direction: 1
+    - rid: 7760134613496496492
+      type: {class: FaceDirectionStep, ns: , asm: Assembly-CSharp}
+      data:
+        actorId: player
+        direction: -1
+    - rid: 7760134613496496493
+      type: {class: FaceDirectionStep, ns: , asm: Assembly-CSharp}
+      data:
+        actorId: player
+        direction: 1
+    - rid: 7760134613496496494
+      type: {class: WaitStep, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 1
+    - rid: 7760134613496496496
+      type: {class: WaitStep, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 1
+    - rid: 7760134613496496497
+      type: {class: WaitStep, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 1
+    - rid: 7760134613496496499
+      type: {class: PlayObjectAnimationtep, ns: , asm: Assembly-CSharp}
+      data:
+        objectId: portal_purple
+        triggerName: close
+        waitDuration: 0.35
+    - rid: 7760134613496496501
+      type: {class: WaitStep, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 1
+    - rid: 7760134613496496502
+      type: {class: DialogueStep, ns: , asm: Assembly-CSharp}
+      data:
+        dialogue: {fileID: 11400000, guid: 4775ae9f082363f4baaccc755a30dd40, type: 2}
+    - rid: 7760134613496496503
+      type: {class: PlayerControlStep, ns: , asm: Assembly-CSharp}
+      data:
+        enableControl: 1

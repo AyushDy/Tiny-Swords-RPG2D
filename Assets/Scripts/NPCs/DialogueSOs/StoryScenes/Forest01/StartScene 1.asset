@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08581a2f1470ce54da4c5351f1009a4d, type: 3}
+  m_Name: StartScene 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: A forest?
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Why was I here...?
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: I was doing something...
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: I can't remember.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: This doesn't feel right.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: I should look around.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: Maybe there's a road... or a village nearby.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: I need to find a way out of this forest.
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: And stay careful...Something about this place feels dangerous.
+  options: []
+  dialogueId: 
+  offerQuestOnEnd: {fileID: 0}
+  turnInQuestOnEnd: {fileID: 0}
+  requiredNPCs: []
+  requiredLocations: []
+  requiredItems: []
+  requiredQuest: {fileID: 0}
+  requiredQuestState: 0
+  RemoveAfterPlay: 0
+  removeTheseOnPlay: []

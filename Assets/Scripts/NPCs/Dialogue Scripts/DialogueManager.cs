@@ -36,6 +36,18 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!isDialogueActive)
+        {
+            return;
+        }
+        if (Input.GetButtonDown("Interact"))
+        {
+            AdvanceDialogue();
+        }
+    }
+
     public bool canStartDialogue()
     {
         return Time.unscaledTime - lastDialogueEndTime >= dialogueCooldown;

@@ -20,10 +20,11 @@ MonoBehaviour:
   options: []
   dialogueId: kill_goblins_red_pawn
   offerQuestOnEnd: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
+  turnInQuestOnEnd: {fileID: 0}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []
   requiredQuest: {fileID: 0}
-  requiredQuestState: 0
+  requiredQuestState: 1
   RemoveAfterPlay: 0
   removeTheseOnPlay: []

@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: kill_goblins_red_pawn_ready_to_turn_in
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
+  - speaker: {fileID: 11400000, guid: 0c7e8b428f169b0458a27d977d3ce387, type: 2}
+    text: I have finished dealing with the goblins.
   - speaker: {fileID: 11400000, guid: 9458f67f04adad1429d3d0bf16c5dfbd, type: 2}
-    text: Did you deal with the goblins yet?
+    text: That's great news! The forest should be a bit safer now.
+  - speaker: {fileID: 11400000, guid: 9458f67f04adad1429d3d0bf16c5dfbd, type: 2}
+    text: Here.., take this payment.
   options: []
-  dialogueId: kill_goblins_red_pawn
-  offerQuestOnEnd: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
+  dialogueId: kill_goblins_red_pawn_ready_to_turn_in
+  offerQuestOnEnd: {fileID: 0}
+  turnInQuestOnEnd: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
   requiredNPCs: []
   requiredLocations: []
   requiredItems: []
   requiredQuest: {fileID: 11400000, guid: 1c24a84b6b0eb2846b722783ea4652f1, type: 2}
-  requiredQuestState: 2
-  RemoveAfterPlay: 0
-  removeTheseOnPlay:
-  - {fileID: 11400000, guid: a3409a6c5d85bf3429bf0c8397ae8f9e, type: 2}
+  requiredQuestState: 3
+  RemoveAfterPlay: 1
+  removeTheseOnPlay: []

@@ -46,17 +46,10 @@ public class NPC_talk : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if (GameManager.instance.dialogueManager.isDialogueActive)
+            if (!GameManager.instance.dialogueManager.isDialogueActive && GameManager.instance.dialogueManager.canStartDialogue())
             {
-                GameManager.instance.dialogueManager.AdvanceDialogue();
-            }
-            else
-            {
-                if (GameManager.instance.dialogueManager.canStartDialogue())
-                {
-                    CheckForNewConversation();
-                    GameManager.instance.dialogueManager.StartDialogue(currentConversation);
-                }
+                CheckForNewConversation();
+                GameManager.instance.dialogueManager.StartDialogue(currentConversation);
             }
         }
     }
@@ -112,10 +105,10 @@ public class NPC_talk : MonoBehaviour
         {
             var convo = conversations[i];
 
-            if(convo == null)
-            continue;
+            if (convo == null)
+                continue;
 
-            if(convo.offerQuestOnEnd != null && convo.offerQuestOnEnd == acceptedQuest)
+            if (convo.offerQuestOnEnd != null && convo.offerQuestOnEnd == acceptedQuest)
             {
                 conversations.RemoveAt(i);
             }

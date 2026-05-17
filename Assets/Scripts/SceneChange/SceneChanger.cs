@@ -31,7 +31,7 @@ public class SceneChanger : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime/2);
         player.position = newPlayerPosition;
-        playerMovement.facingDirection = faceDirection;
+        playerMovement.FaceDirection(faceDirection);
         yield return new WaitForSeconds(waitTime/2);
         SceneManager.LoadScene(sceneToLoad);
     }

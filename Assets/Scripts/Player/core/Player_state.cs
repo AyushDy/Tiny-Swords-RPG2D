@@ -13,6 +13,7 @@ public class Player_state : MonoBehaviour
     public EquipmentState Equipment { get; private set; } = EquipmentState.Sword;
     public LocomotionState Locomotion { get; private set; } = LocomotionState.Normal;
     public ActionState Action { get; private set; } = ActionState.None;
+    public bool InputLocked { get; private set; }
 
     public event Action OnStateChanged;
 
@@ -82,17 +83,18 @@ public class Player_state : MonoBehaviour
         //if dead, can't do anything
         if (Locomotion == LocomotionState.Dead) return false;
 
-        if (Action == next && next == ActionState.Attacking){
+        if (Action == next && next == ActionState.Attacking)
+        {
             ActionTimer = duration;
             OnStateChanged?.Invoke();
             return true;
         }
 
         //Can't defend with bow
-        if(next == ActionState.Defending && Equipment == EquipmentState.Bow)
+        if (next == ActionState.Defending && Equipment == EquipmentState.Bow)
         {
             return false;
-        }        
+        }
 
         int currentPriority = GetActionPriority(Action);
         int nextPriority = GetActionPriority(next);
@@ -107,7 +109,7 @@ public class Player_state : MonoBehaviour
             return false;
 
         //if trying to attack or shoot but currently defending, fail
-        if(next == ActionState.Defending)
+        if (next == ActionState.Defending)
         {
             defendStartTime = Time.time;
         }
@@ -131,7 +133,8 @@ public class Player_state : MonoBehaviour
         if (Locomotion == LocomotionState.Dead)
             return false;
 
-        if(!force){
+        if (!force)
+        {
             int currentPriority = GetLocomotionPriority(Locomotion);
             int nextPriority = GetLocomotionPriority(next);
 
@@ -163,7 +166,7 @@ public class Player_state : MonoBehaviour
         {
             EndAction();
         }
-        
+
         OnStateChanged?.Invoke();
     }
 
@@ -179,4 +182,15 @@ public class Player_state : MonoBehaviour
         return Action == ActionState.Defending &&
                Time.time - defendStartTime <= parryWindow;
     }
+
+    public void LockInput()
+    {
+        InputLocked = true;
+    }
+
+    public void UnlockInput()
+    {
+        InputLocked = false;
+    }
+
 }

@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class QuestOfferUI : MonoBehaviour
 {
-    [SerializeField] private GameObject root;
     [SerializeField] private TMP_Text questTitleText;
     [SerializeField] private TMP_Text questDescriptionText;
+
+    private CanvasGroup questOfferCanvasGroup;
+
 
     public QuestSO2 currentQuestOffer;
 
     private void Start()
     {
         QuestManager2.Instance.OnQuestOfferReceived += ShowOffer;
-        root.SetActive(false);
+        questOfferCanvasGroup = GetComponent<CanvasGroup>();
     }
 
     private void OnDisable()
@@ -22,7 +24,7 @@ public class QuestOfferUI : MonoBehaviour
 
     private void ShowOffer(QuestSO2 quest)
     {
-        if (root.activeSelf)
+        if (questOfferCanvasGroup.alpha > 0)
         {
             Debug.LogWarning("Quest offer already open.");
             return;
@@ -33,7 +35,9 @@ public class QuestOfferUI : MonoBehaviour
         questTitleText.text = quest.questName;
         questDescriptionText.text = quest.questDescription;
 
-        root.SetActive(true);
+        questOfferCanvasGroup.alpha = 1;
+        questOfferCanvasGroup.interactable = true;
+        questOfferCanvasGroup.blocksRaycasts = true;
         Time.timeScale = 0f;
     }
 
@@ -53,7 +57,9 @@ public class QuestOfferUI : MonoBehaviour
     {
         currentQuestOffer = null;
         Time.timeScale = 1f;
-        root.SetActive(false);
+        questOfferCanvasGroup.alpha = 0;
+        questOfferCanvasGroup.interactable = false;
+        questOfferCanvasGroup.blocksRaycasts = false;
     }
 }
 
